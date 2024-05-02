@@ -3,6 +3,7 @@ configuration {
 	display-clipboard: "";
 	drun-display-format: "{name}";
 	modi: "drun";
+	monitor: 1;
 	show-icons: true;
 	icon-theme: "Papirus-Dark";
 }
