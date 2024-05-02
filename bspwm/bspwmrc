@@ -1,0 +1,102 @@
+#!/bin/bash
+
+# # Single start apps
+# SINGLE_STARTUP_APPS="$HOME/.config/bspwm/scripts/single_startup_apps"
+# if [ -f "$SINGLE_STARTUP_APPS" ]; then
+#   while IFS= read -r app; do
+#     $app &
+#   done < "$SINGLE_STARTUP_APPS"
+# else
+#   echo "File $SINGLE_STARTUP_APPS not found."
+# fi
+
+# $HOME/.config/bspwm/scripts/single_startup_apps
+
+
+# Autostart apps, do reopen while bspwm reload
+/usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1 & # Polkit dont reopen
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x picom > /dev/null || picom &
+$HOME/.config/polybar/launch.sh &
+
+
+# Apps for autostart, dont reopen
+applications=(
+	"blueman-manager"
+	"yandex-music"
+	"notion-app"
+	"bitwarden-desktop"
+	"firefox"
+	"telegram-desktop"
+	"flameshot"
+)
+
+# Перебор приложений в массиве
+for app in "${applications[@]}"; do
+    # Проверка наличия процесса приложения
+    if pgrep -x "$app" > /dev/null; then
+        echo "$app уже запущен"
+    else
+        echo "Запуск $app"
+        "$app" &
+    fi
+done
+
+# if pgrep -x google-chrome-stable > /dev/null; then
+# 	exit
+# else
+# 	google-chrome-stable &
+# fi
+
+# blueman-manager &
+# google-chrome-stable &
+# firefox &
+# yandex-music &
+# telegram-desktop &
+# flameshot &
+# bitwarden-desktop &
+# notion-app &
+
+
+
+
+xsetroot -cursor_name "Future-dark-cursors"
+xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 0x180 --rotate normal --output DP-3 --off --output DP-4 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-5 --off &
+nitrogen --restore &
+
+
+$HOME/.config/bspwm/scripts/layout_switch.sh
+
+# bspc subscribe focus_changed | while read -r; do "$HOME/.config/bspwm/scripts/layout_switch.sh"; done &
+
+bspc monitor DP-2 -d 1 2
+bspc monitor DP-4 -d 3 4 5
+
+bspc config border_width        2
+bspc config window_gap          6
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config normal_border_color "#23252e"
+# bspc config active_border_color "#BD93F9"
+bspc config focused_border_color "#98c379"
+bspc config presel_feedback_color "#23252e"
+
+
+bspc rule -a Pavucontrol state=floating monitor="DP-4" rectangle="900x450+500+210"
+bspc rule -a Blueman-manager state=floating monitor="DP-4" rectangle="600x250+1310+212"
+bspc rule -a Google-chrome desktop='^1'
+bspc rule -a firefox desktop='^1'
+bspc rule -a YandexMusic desktop='^2'
+bspc rule -a TelegramDesktop desktop='^2'
+bspc rule -a Notion desktop='^2'
+bspc rule -a Bitwarden state=floating monitor="DP-4"
+
+
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+#bspc rule -a Chromium desktop='^2'
+#bspc rule -a mplayer2 state=floating
+#bspc rule -a Kupfer.py focus=on
+#bspc rule -a Screenkey manage=off
