@@ -1,10 +1,4 @@
 # General
-# Exit wm
-# Deprecated, use CTRL+ALT+Backspace
-# super + alt + q
-# 	bspc quit
-
-
 # Reload bspwm
 super + alt + b
 	bspc wm -r
@@ -13,7 +7,7 @@ super + alt + b
 super + alt + s
 	pkill -USR1 -x sxhkd
 
-# Start apps
+# Apps
 # Start terminal
 super + Return
 	alacritty
@@ -22,6 +16,9 @@ super + Return
 super + d
 	rofi -show drun -config ~/.config/rofi/rofi.rasi
 
+# Start flameshot
+Print
+	flameshot gui
 
 # Windows
 # Close and kill window
@@ -32,7 +29,6 @@ super + {_,shift + }q
 super + {f,t}
 	bspc node -t {floating,tiled}
   # bspc query -N -n focused.floating && bspc node focused.tiled -t fullscreen || bspc node focused.floating -t tiled
-
 
 # Focus and move windows
 super + {_,shift + }{h,j,k,l}
