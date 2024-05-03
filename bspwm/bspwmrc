@@ -14,7 +14,7 @@ applications=(
 	"yandex-music"
 	"notion-app"
 	"bitwarden-desktop"
-	"firefox"
+	# "firefox"
 	"telegram-desktop"
 	"flameshot"
 )
