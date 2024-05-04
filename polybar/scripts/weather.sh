@@ -41,7 +41,7 @@ if [ -n "$CITY" ]; then
 
     weather=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
 else
-    location=$(curl -sf https://location.services.mozilla.com/v1/geolocate?key=geoclue)
+    location=$(curl -sf "https://location.services.mozilla.com/v1/geolocate?key=geoclue")
 
     if [ -n "$location" ]; then
         location_lat="$(echo "$location" | jq '.location.lat')"
@@ -52,8 +52,10 @@ else
 fi
 
 if [ -n "$weather" ]; then
+    weather_desc=$(echo "$weather" | jq -r ".weather[0].description")
     weather_temp=$(echo "$weather" | jq ".main.temp" | cut -d "." -f 1)
     weather_icon=$(echo "$weather" | jq -r ".weather[0].icon")
 
-    echo  "$weather_temp$SYMBOL"
+    # echo "$(get_icon "$weather_icon")" "$weather_desc", "$weather_temp$SYMBOL"
+    echo "$weather_temp$SYMBOL" "$weather_desc"
 fi
