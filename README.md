@@ -29,5 +29,8 @@ Colors based on Onedark pallete
 ### Roadmap
 - [ ] - Dependencies list
 - [ ] - GTK theme
+- [ ] - Monochrome tray icons
+- [ ] - Power menu icons
+- [ ] - edd widgets
 
 
