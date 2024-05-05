@@ -31,6 +31,6 @@ Colors based on Onedark pallete
 - [ ] - GTK theme
 - [ ] - Monochrome tray icons
 - [ ] - Power menu icons
-- [ ] - edd widgets
+- [ ] - eww widgets
 
 
