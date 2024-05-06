@@ -25,7 +25,7 @@ Print
 super + {_,shift + }q
 	bspc node -{c,k}
 
-# Переключение окна между тайлинговым и плавающим режимом
+# Switch between modes
 super + {f,t}
 	bspc node -t {floating,tiled}
   # bspc query -N -n focused.floating && bspc node focused.tiled -t fullscreen || bspc node focused.floating -t tiled
@@ -38,3 +38,18 @@ super + {_,shift + }{h,j,k,l}
 super + {_,shift + }{1-5}
 	bspc {desktop -f,node -d} '^{1-5}'
 
+# Resize tiled windows
+super + ctrl + {h,j,k,l}
+	{bspc node -z left -20 0; bspc node -z right -20 0, \
+	bspc node -z bottom 0 20; bspc node -z top 0 20, \
+	bspc node -z bottom 0 -20; bspc node -z top 0 -20, \
+	bspc node -z left 20 0; bspc node -z right 20 0}
+
+
+# Set direction to open new window
+super + alt + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# Reject direction (previous comman)
+super + alt + space
+	bspc node -p cancel
