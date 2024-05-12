@@ -1,5 +1,14 @@
 #!/bin/bash
 
+
+# Log into file
+exec bspwm > ~/.config/bspwm/bspwm.log 2>&1
+
+
+# Import user variables from env
+. $HOME/.zshenv
+
+
 # Autostart apps, do reopen while bspwm reload
 /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1 & # Polkit dont reopen
 pgrep -x sxhkd > /dev/null || sxhkd &
@@ -17,16 +26,20 @@ applications=(
 	# "firefox"
 	"telegram-desktop"
 	"flameshot"
+	"redshift-gtk -l '$LATITUDE:$LONGITUDE' -t 6500:3500 -g 0.9"
 )
 
 for app in "${applications[@]}"; do
-  if pgrep -f "$app" > /dev/null; then
-		echo "$app already running, skip"
+  app_name=$(echo "$app" | awk '{print $1}')
+  if pgrep -f "$app_name" > /dev/null; then
+		echo "$app_name already running, skip"
   else
-    echo "Start $app"
-    "$app" &
+    echo "Start $app_name"
+    eval "$app" &
   fi
 done
+
+
 
 # Displays resolution
 xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 0x180 --rotate normal --output DP-3 --off --output DP-4 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-5 --off &
