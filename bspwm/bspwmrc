@@ -12,7 +12,7 @@ $HOME/.config/polybar/launch.sh &
 applications=(
 	"blueman-manager"
 	"yandex-music"
-	"notion-app"
+	# "notion-app"
 	"bitwarden-desktop"
 	# "firefox"
 	"telegram-desktop"
