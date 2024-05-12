@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/bin/bash
+
+# Import user variables from env
+. $HOME/.zshenv
+
 
 get_icon() {
     case $1 in
@@ -25,7 +29,7 @@ get_icon() {
     echo $icon
 }
 
-KEY="15def74e2c3f8403d5c1bdc794715abf"
+KEY=$OPENWEATHERMAP_KEY
 CITY="Nakhodka"
 UNITS="metric"
 SYMBOL="°"
