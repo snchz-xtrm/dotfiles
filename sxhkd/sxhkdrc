@@ -26,9 +26,8 @@ super + {_,shift + }q
 	bspc node -{c,k}
 
 # Switch between modes
-super + {f,t}
-	bspc node -t {floating,tiled}
-  # bspc query -N -n focused.floating && bspc node focused.tiled -t fullscreen || bspc node focused.floating -t tiled
+super + {f,t,m}
+	bspc node -t {floating,tiled,fullscreen}
 
 # Focus and move windows
 super + {_,shift + }{h,j,k,l}
