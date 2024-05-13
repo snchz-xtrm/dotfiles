@@ -1,10 +1,6 @@
 #!/bin/bash
 
 
-# Log into file
-exec bspwm > ~/.config/bspwm/bspwm.log 2>&1
-
-
 # Import user variables from env
 . $HOME/.zshenv
 
