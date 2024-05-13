@@ -21,15 +21,19 @@ local plugins = {
 		build = ':TSUpdate'
 	},
 	{
- 		'navarasu/onedark.nvim',
+		'navarasu/onedark.nvim',
 	},
 	{
- 		'nvim-lualine/lualine.nvim',
+		'nvim-lualine/lualine.nvim',
 		dependencies = {'nvim-tree/nvim-web-devicons'}
 	},
 	{
 		'nvim-tree/nvim-tree.lua',
 		dependencies = {'nvim-tree/nvim-web-devicons'}
+	},
+	{
+		'tanvirtin/vgit.nvim',
+		dependencies = {'nvim-tree/nvim-web-devicons','nvim-lua/plenary.nvim'},
 	},
 }
 
@@ -37,6 +41,8 @@ local plugins = {
 local opts = {}
 
 require('lazy').setup(plugins, opts)
+
+require('vgit').setup()
 
 require('nvim-tree').setup({
 	sort = {
