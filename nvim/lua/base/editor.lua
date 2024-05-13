@@ -1,6 +1,7 @@
--- Variables
+-- Alias for quick access to vim methods
 local opt = vim.opt -- vim options
 local g = vim.g     -- vim global variables
+local cmd = vim.cmd -- vim cmd
 
 -- New vertical panel on the right
 opt.splitright = true
@@ -24,3 +25,9 @@ vim.cmd [[autocmd BufEnter * set fo-=c fo-=r fo-=o]]
 opt.number = true
 opt.relativenumber = true
 
+-- Enable 24-bit colors
+opt.termguicolors = true
+
+-- Disable netrw for nvim-tree
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
