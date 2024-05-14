@@ -1,10 +1,6 @@
 #!/bin/bash
 
 
-# Import user variables from env
-. $HOME/.zshenv
-
-
 # Autostart apps, do reopen while bspwm reload
 /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1 & # Polkit dont reopen
 pgrep -x sxhkd > /dev/null || sxhkd &
@@ -12,43 +8,22 @@ pgrep -x picom > /dev/null || picom &
 $HOME/.config/polybar/launch.sh &
 
 
-# Apps for autostart, dont reopen
-# TODO: Dont work with bitwarden-dekstop, blueman-manager
-applications=(
-	"blueman-manager"
-	"yandex-music"
-	# "notion-app"
-	# "bitwarden-desktop"
-	# "firefox"
-	"telegram-desktop"
-	"flameshot"
-	"redshift-gtk -l '$LATITUDE:$LONGITUDE' -t 6500:3500 -g 0.9"
-)
-
-for app in "${applications[@]}"; do
-  app_name=$(echo "$app" | awk '{print $1}')
-  if pgrep -f "$app_name" > /dev/null; then
-		echo "$app_name already running, skip"
-  else
-    echo "Start $app_name"
-    "$app" &
-  fi
-done
-
-
-
 # Displays resolution
 xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 0x180 --rotate normal --output DP-3 --off --output DP-4 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-5 --off &
+
 
 # Restore wallpapers
 nitrogen --restore &
 
+
 # Keyboard layout switch
 $HOME/.config/bspwm/scripts/layout_switch.sh
+
 
 # Workspaces
 bspc monitor DP-2 -d 1 2
 bspc monitor DP-4 -d 3 4 5
+
 
 # Appearance, colors
 bspc config border_width        2
