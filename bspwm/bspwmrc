@@ -31,7 +31,7 @@ for app in "${applications[@]}"; do
 		echo "$app_name already running, skip"
   else
     echo "Start $app_name"
-    eval "$app" &
+    "$app" &
   fi
 done
 
