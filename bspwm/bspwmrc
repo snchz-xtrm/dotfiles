@@ -65,8 +65,8 @@ bspc config presel_feedback_color "#23252e"
 
 
 # Rules apps
-bspc rule -a Pavucontrol state=floating monitor="DP-4" rectangle="900x450+500+210"
-bspc rule -a Blueman-manager state=floating monitor="DP-4" rectangle="600x250+1310+212"
+bspc rule -a Pavucontrol state=floating sticky=on monitor="DP-4" rectangle="900x450+500+210"
+bspc rule -a Blueman-manager state=floating sticky=on monitor="DP-4" rectangle="600x250+1310+212"
 bspc rule -a Google-chrome desktop='^1'
 bspc rule -a firefox desktop='^1'
 bspc rule -a YandexMusic desktop='^2'
