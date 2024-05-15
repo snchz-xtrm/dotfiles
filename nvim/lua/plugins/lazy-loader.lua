@@ -32,17 +32,17 @@ local plugins = {
 		dependencies = {'nvim-tree/nvim-web-devicons'}
 	},
 	{
-		'tanvirtin/vgit.nvim',
-		dependencies = {'nvim-tree/nvim-web-devicons','nvim-lua/plenary.nvim'},
+		'akinsho/bufferline.nvim',
+		version = "*",
+		dependencies = {'nvim-tree/nvim-web-devicons'}
 	},
 }
 
-
 local opts = {}
+
 
 require('lazy').setup(plugins, opts)
 
-require('vgit').setup()
 
 require('nvim-tree').setup({
 	sort = {
@@ -59,3 +59,4 @@ require('nvim-tree').setup({
   },
 })
 
+require('bufferline').setup{}
