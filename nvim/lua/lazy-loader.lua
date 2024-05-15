@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -9,7 +10,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     lazypath,
   })
 end
+
+
 vim.opt.rtp:prepend(lazypath)
+
 
 local plugins = {
 	{
@@ -36,27 +40,19 @@ local plugins = {
 		version = "*",
 		dependencies = {'nvim-tree/nvim-web-devicons'}
 	},
+	{
+		'lewis6991/gitsigns.nvim'
+	},
 }
+
 
 local opts = {}
 
 
 require('lazy').setup(plugins, opts)
 
-
-require('nvim-tree').setup({
-	sort = {
-    sorter = "case_sensitive",
-  },
-  view = {
-    width = 30,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
-
-require('bufferline').setup{}
+-- Start plugins
+require('plugins.lualine')
+require('plugins.nvim-tree')
+require('plugins.bufferline')
+require('plugins.gitsigns')

@@ -7,8 +7,7 @@ require('base.tabs')
 require('keys.main')
 
 -- Plugins
-require('plugins.lazy-loader')
-require('plugins.lualine')
+require('lazy-loader')
 
 -- Theme
 require('onedark').load()
