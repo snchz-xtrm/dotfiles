@@ -1,6 +1,6 @@
 require('nvim-tree').setup({
 	sort = {
-    sorter = "case_sensitive",
+    sorter = "name",
   },
   view = {
     width = 30,
