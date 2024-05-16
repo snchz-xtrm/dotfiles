@@ -1,7 +1,7 @@
 -- Import base settings
 require('base.editor')
 require('base.search')
-require('base.tabs')
+require('base.indent')
 
 -- Keymaps
 require('keys.main')
